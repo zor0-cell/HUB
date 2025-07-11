@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог аниме | AnimeHUB</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6a0dad;
+            --secondary: #4b0082;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --accent: #ff6b6b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 0.5rem 1rem;
+        }
+
+        .search-bar input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            width: 200px;
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-bar button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .container {
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            border-left: 5px solid var(--accent);
+            padding-left: 1rem;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            background: rgba(30, 30, 50, 0.7);
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+        }
+
+        .filter-group select, .filter-group input {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .anime-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .anime-card {
+            background: rgba(30, 30, 50, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .anime-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .anime-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .anime-info {
+            padding: 1rem;
+        }
+
+        .anime-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .anime-info .rating {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .pagination button {
+            background: rgba(30, 30, 50, 0.7);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .pagination button:hover {
+            background: var(--accent);
+        }
+
+        footer {
+            background: #0f0f1a;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Anime<span>HUB</span></a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html" class="active">Каталог</a></li>
+                <li><a href="top.html">Топ аниме</a></li>
+                <li><a href="profile.html">Профиль</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Поиск аниме...">
+            <button title="Поиск"><i class="fas fa-search"></i></button>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Каталог аниме</h2>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <label for="genre">Жанр</label>
+                <select id="genre">
+                    <option value="all">Все жанры</option>
+                    <option value="action">Экшен</option>
+                    <option value="romance">Романтика</option>
+                    <option value="fantasy">Фэнтези</option>
+                    <option value="comedy">Комедия</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="year">Год</label>
+                <select id="year">
+                    <option value="all">Все годы</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="status">Статус</label>
+                <select id="status">
+                    <option value="all">Все статусы</option>
+                    <option value="ongoing">Онгоинг</option>
+                    <option value="completed">Завершён</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="sort">Сортировка</label>
+                <select id="sort">
+                    <option value="popular">По популярности</option>
+                    <option value="rating">По рейтингу</option>
+                    <option value="newest">Сначала новые</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="anime-grid">
+            <div class="anime-card" onclick="window.location.href='anime.html?id=1'">
+                <img src="https://example.com/anime1.jpg" alt="Атака Титанов">
+                <div class="anime-info">
+                    <h3>Атака Титанов</h3>
+                    <p class="rating">★ 9.1</p>
+                </div>
+            </div>
+            <!-- Добавь больше карточек -->
+        </div>
+        
+        <div class="pagination">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>→</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" title="VK"><i class="fab fa-vk"></i></a>
+            <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
+            <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+        </div>
+        <p>© 2024 AnimeHUB. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Фильтрация аниме
+        document.querySelectorAll('.filters select').forEach(select => {
+            select.addEventListener('change', () => {
+                // Здесь можно добавить запрос к API или фильтрацию через JS
+                console.log("Фильтры изменены!");
+            });
+        });
+
+        // Поиск
+        document.querySelector('.search-bar button').addEventListener('click', () => {
+            const query = document.querySelector('.search-bar input').value;
+            if (query.trim() !== '') {
+                window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+            }
+        });
+    </script>
+</body>
+</html>

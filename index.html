@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Смотрите аниме онлайн бесплатно на AnimeHUB. Тысячи аниме на любой вкус: сёнен, романтика, фэнтези и многое другое!">
+    <title>AnimeHUB — Смотри аниме онлайн</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6a0dad;
+            --secondary: #4b0082;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --accent: #ff6b6b;
+            --card-bg: rgba(30, 30, 50, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        /* Улучшенный header с адаптивным меню */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        /* Гамбургер меню для мобильных */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            padding: 0.5rem;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 0.5rem;
+            margin-left: 1rem;
+            flex-grow: 1;
+            max-width: 300px;
+        }
+
+        .search-bar input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            width: 100%;
+            padding: 0.3rem;
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-bar button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0 0.5rem;
+        }
+
+        /* Герой секция с улучшениями */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://via.placeholder.com/1920x1080/6a0dad/4b0082?text=AnimeHUB') no-repeat center/cover;
+            height: 60vh;
+            min-height: 400px;
+            max-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .btn {
+            background: var(--accent);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Основной контент */
+        .container {
+            padding: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
+            margin-bottom: 1.5rem;
+            color: white;
+            border-left: 5px solid var(--accent);
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        /* Сетка аниме с адаптивными карточками */
+        .anime-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .anime-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            aspect-ratio: 2/3;
+        }
+
+        .anime-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .anime-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .anime-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .anime-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 1rem;
+            color: white;
+        }
+
+        .anime-info h3 {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            margin-bottom: 0.3rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .anime-info .rating {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Футер */
+        footer {
+            background: #0f0f1a;
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Лоадер для асинхронной загрузки */
+        .loader {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Кнопка "Наверх" */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 99;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        /* Адаптивные стили */
+        @media (max-width: 992px) {
+            .anime-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .menu-toggle {
+                display: block;
+                order: 1;
+            }
+            
+            .logo {
+                order: 2;
+                flex-grow: 1;
+                text-align: center;
+            }
+            
+            .search-bar {
+                order: 4;
+                margin: 0.5rem 0 0;
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            nav {
+                order: 3;
+                width: 100%;
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+            }
+            
+            nav a {
+                display: block;
+                padding: 0.8rem 1rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .hero {
+                height: 50vh;
+                min-height: 300px;
+            }
+            
+            .hero-content {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .anime-grid {
+                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+                gap: 0.8rem;
+            }
+            
+            .anime-info h3 {
+                font-size: 0.8rem;
+            }
+            
+            .anime-info .rating {
+                font-size: 0.8rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="menu-toggle" aria-label="Меню">
+            <i class="fas fa-bars"></i>
+        </button>
+        <a href="index.html" class="logo">Anime<span>HUB</span></a>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="#">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="top.html">Топ аниме</a></li>
+                <li><a href="profile.html">Профиль</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Поиск аниме..." aria-label="Поиск аниме">
+            <button title="Поиск"><i class="fas fa-search"></i></button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Смотри аниме онлайн бесплатно</h1>
+            <p>Тысячи аниме на любой вкус: сёнен, романтика, фэнтези и многое другое!</p>
+            <button class="btn">Смотреть сейчас</button>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title">Популярные аниме</h2>
+        <div class="anime-grid">
+            <!-- Первые 6 карточек для примера -->
+            <div class="anime-card" onclick="window.location.href='anime.html?id=1'">
+                <img src="https://avatars.mds.yandex.net/i?id=a42c6a37488da289ca9d8f232a1b8d949ec8ac62-5169780-images-thumbs&n=13" alt="Атака Титанов" loading="lazy">
+                <div class="anime-info">
+                    <h3>Атака Титанов</h3>
+                    <p class="rating">★ 9.1</p>
+                </div>
+            </div>
+            <div class="anime-card" onclick="window.location.href='anime.html?id=2'">
+                <img src="https://avatars.mds.yandex.net/i?id=c11781aa755f0e749ee89e6b6b8c6705b15ff75a-5878141-images-thumbs&n=13" alt="Гачиакута" loading="lazy">
+                <div class="anime-info">
+                    <h3>Гачиакута</h3>
+                    <p class="rating">★ 8.7</p>
+                </div>
+            </div>
+            <div class="anime-card" onclick="window.location.href='anime.html?id=3'">
+                <img src="https://avatars.mds.yandex.net/i?id=05d71006673476f6a3a52a047105924dabd234ac-5221753-images-thumbs&n=13" alt="Хроники людей и демонов" loading="lazy">
+                <div class="anime-info">
+                    <h3>Хроники людей и демонов</h3>
+                    <p class="rating">★ 8.7</p>
+                </div>
+            </div>
+            <div class="anime-card" onclick="window.location.href='anime.html?id=4'">
+                <img src="https://avatars.mds.yandex.net/i?id=7fd7727520ce0f677e72f3286f58c7c2ab601133-4571688-images-thumbs&n=13" alt="Быть героем Икс" loading="lazy">
+                <div class="anime-info">
+                    <h3>Быть героем Икс</h3>
+                    <p class="rating">★ 8.7</p>
+                </div>
+            </div>
+            <div class="anime-card" onclick="window.location.href='anime.html?id=5'">
+                <img src="https://avatars.mds.yandex.net/i?id=0a5f68584b329f0173bab50ffb6405ad7a65fb1a-3687098-images-thumbs&n=13" alt="Ветерлом" loading="lazy">
+                <div class="anime-info">
+                    <h3>Ветерлом</h3>
+                    <p class="rating">★ 8.7</p>
+                </div>
+            </div>
+            <div class="anime-card" onclick="window.location.href='anime.html?id=6'">
+                <img src="https://avatars.mds.yandex.net/i?id=5d7f7202b9a0e4f9f2e7753f1aafdb6bdacec9c6-4420695-images-thumbs&n=13" alt="Дандандан" loading="lazy">
+                <div class="anime-info">
+                    <h3>Дандандан</h3>
+                    <p class="rating">★ 8.7</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="loader" id="loader">
+            <i class="fas fa-spinner fa-spin"></i> Загрузка...
+        </div>
+
+        <button class="btn" id="load-more" style="display: block; margin: 0 auto;">Показать еще</button>
+    </div>
+
+    <div class="scroll-top" id="scrollTop" title="Наверх">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" title="VK"><i class="fab fa-vk"></i></a>
+            <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
+            <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+        </div>
+        <p>© 2024 AnimeHUB. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+        
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+
+        // Поиск аниме
+        document.querySelector('.search-bar button').addEventListener('click', () => {
+            const query = document.querySelector('.search-bar input').value.trim();
+            if (query !== '') {
+                window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+            }
+        });
+
+        // Обработка нажатия Enter в поле поиска
+        document.querySelector('.search-bar input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const query = document.querySelector('.search-bar input').value.trim();
+                if (query !== '') {
+                    window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+                }
+            }
+        });
+
+        // Кнопка "Наверх"
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Ленивая загрузка и "Показать еще"
+        const loadMoreBtn = document.getElementById('load-more');
+        const loader = document.getElementById('loader');
+        let currentPage = 1;
+        
+        // Здесь можно добавить загрузку данных с API
+        loadMoreBtn.addEventListener('click', () => {
+            loadMoreBtn.style.display = 'none';
+            loader.style.display = 'block';
+            
+            // Имитация загрузки данных
+            setTimeout(() => {
+                // В реальном приложении здесь будет fetch к API
+                const animeGrid = document.querySelector('.anime-grid');
+                const newAnime = [
+                    {
+                        id: 7,
+                        title: "Маг воды",
+                        image: "https://avatars.mds.yandex.net/i?id=e01ce52e5fd94387e821bed3de4c8c9afe4e410b-11018127-images-thumbs&n=13",
+                        rating: 8.7
+                    },
+                    {
+                        id: 8,
+                        title: "Re:Zero",
+                        image: "https://avatars.mds.yandex.net/i?id=aae770fefee0409f841f47adcf19cf5f64695ca9-5655212-images-thumbs&n=13",
+                        rating: 8.7
+                    },
+                    {
+                        id: 9,
+                        title: "Наруто",
+                        image: "https://avatars.mds.yandex.net/i?id=2b4cfa262904e87275ca80118a5b958b736415bf-12501129-images-thumbs&n=13",
+                        rating: 8.7
+                    },
+                    {
+                        id: 10,
+                        title: "Левиафан",
+                        image: "https://avatars.mds.yandex.net/i?id=51334374d38af24b77e43ddff65fdc4a1f241a41-12441694-images-thumbs&n=13",
+                        rating: 3.5
+                    },
+                    {
+                        id: 11,
+                        title: "Твоя форма",
+                        image: "https://avatars.mds.yandex.net/i?id=3ad6bc37a374ff8ac3cf4144a4e36767a8f0ab33-9181181-images-thumbs&n=13",
+                        rating: 8.7
+                    },
+                    {
+                        id: 12,
+                        title: "Пламенная бригада",
+                        image: "https://avatars.mds.yandex.net/i?id=7d326c43ef9225f449d6b04199a489032941c156-4872026-images-thumbs&n=13",
+                        rating: 8.7
+                    }
+                ];
+                
+                newAnime.forEach(anime => {
+                    const card = document.createElement('div');
+                    card.className = 'anime-card';
+                    card.onclick = () => window.location.href = `anime.html?id=${anime.id}`;
+                    card.innerHTML = `
+                        <img src="${anime.image}" alt="${anime.title}" loading="lazy">
+                        <div class="anime-info">
+                            <h3>${anime.title}</h3>
+                            <p class="rating">★ ${anime.rating}</p>
+                        </div>
+                    `;
+                    animeGrid.appendChild(card);
+                });
+                
+                loader.style.display = 'none';
+                loadMoreBtn.style.display = 'block';
+                currentPage++;
+                
+                // В реальном приложении нужно проверять, есть ли еще данные
+                if (currentPage >= 3) {
+                    loadMoreBtn.style.display = 'none';
+                }
+            }, 1000);
+        });
+
+        // Ленивая загрузка изображений
+        if ('IntersectionObserver' in window) {
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            lazyImages.forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
+</body>
+</html>
