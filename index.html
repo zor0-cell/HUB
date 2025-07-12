@@ -14,6 +14,7 @@
             --light: #f8f9fa;
             --accent: #ff6b6b;
             --card-bg: rgba(30, 30, 50, 0.7);
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -27,9 +28,12 @@
             background-color: var(--dark);
             color: var(--light);
             line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Улучшенный header с адаптивным меню */
+        /* Header Styles */
         header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             padding: 1rem;
@@ -40,6 +44,8 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .logo {
@@ -48,13 +54,16 @@
             color: white;
             text-decoration: none;
             white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .logo span {
+        .logo i {
             color: var(--accent);
         }
 
-        /* Гамбургер меню для мобильных */
+        /* Mobile Menu */
         .menu-toggle {
             display: none;
             background: none;
@@ -63,6 +72,17 @@
             font-size: 1.5rem;
             cursor: pointer;
             padding: 0.5rem;
+            order: 1;
+        }
+
+        nav {
+            order: 3;
+            width: 100%;
+            display: none;
+        }
+
+        nav.active {
+            display: block;
         }
 
         nav ul {
@@ -75,13 +95,22 @@
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: 0.3s;
+            transition: var(--transition);
             padding: 0.5rem;
             white-space: nowrap;
+            display: block;
         }
 
         nav a:hover {
             color: var(--accent);
+        }
+
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            align-items: center;
+            order: 2;
+            flex-grow: 1;
         }
 
         .search-bar {
@@ -90,9 +119,14 @@
             background: rgba(255, 255, 255, 0.2);
             border-radius: 30px;
             padding: 0.5rem;
-            margin-left: 1rem;
-            flex-grow: 1;
-            max-width: 300px;
+            width: 100%;
+            max-width: 400px;
+            transition: var(--transition);
+        }
+
+        .search-bar:focus-within {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 0 2px var(--accent);
         }
 
         .search-bar input {
@@ -101,7 +135,8 @@
             outline: none;
             color: white;
             width: 100%;
-            padding: 0.3rem;
+            padding: 0.3rem 0.5rem;
+            font-size: 1rem;
         }
 
         .search-bar input::placeholder {
@@ -114,9 +149,15 @@
             color: white;
             cursor: pointer;
             padding: 0 0.5rem;
+            transition: var(--transition);
         }
 
-        /* Герой секция с улучшениями */
+        .search-bar button:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
                         url('https://via.placeholder.com/1920x1080/6a0dad/4b0082?text=AnimeHUB') no-repeat center/cover;
@@ -134,6 +175,18 @@
             z-index: 1;
             max-width: 800px;
             padding: 0 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero h1 {
@@ -141,14 +194,17 @@
             margin-bottom: 1rem;
             color: white;
             line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .hero p {
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             margin-bottom: 2rem;
             color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
 
+        /* Buttons */
         .btn {
             background: var(--accent);
             color: white;
@@ -157,9 +213,10 @@
             border-radius: 30px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
+            transition: var(--transition);
             font-size: 1rem;
             display: inline-block;
+            text-decoration: none;
         }
 
         .btn:hover {
@@ -168,11 +225,23 @@
             box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
         }
 
-        /* Основной контент */
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Main Content */
         .container {
-            padding: 1.5rem;
+            padding: 2rem 1.5rem;
             max-width: 1400px;
             margin: 0 auto;
+            flex: 1;
         }
 
         .section-title {
@@ -182,13 +251,29 @@
             border-left: 5px solid var(--accent);
             padding-left: 1rem;
             position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        /* Сетка аниме с адаптивными карточками */
+        .section-title a {
+            font-size: 1rem;
+            color: var(--accent);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .section-title a:hover {
+            text-decoration: underline;
+        }
+
+        /* Anime Grid */
         .anime-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
@@ -196,10 +281,11 @@
             background: var(--card-bg);
             border-radius: 10px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: var(--transition);
             cursor: pointer;
             position: relative;
             aspect-ratio: 2/3;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .anime-card:hover {
@@ -211,7 +297,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: var(--transition);
         }
 
         .anime-card:hover img {
@@ -226,6 +312,12 @@
             background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
             padding: 1rem;
             color: white;
+            transform: translateY(0);
+            transition: var(--transition);
+        }
+
+        .anime-card:hover .anime-info {
+            transform: translateY(-5px);
         }
 
         .anime-info h3 {
@@ -236,51 +328,77 @@
             text-overflow: ellipsis;
         }
 
+        .anime-info .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
         .anime-info .rating {
             color: var(--accent);
             font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        /* Футер */
-        footer {
-            background: #0f0f1a;
-            padding: 2rem 1rem;
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        footer p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-        }
-
-        .social-links {
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1rem 0;
+            align-items: center;
+            gap: 0.2rem;
         }
 
-        .social-links a {
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            position: relative;
+            min-width: 150px;
+        }
+
+        .filter-group select {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            border: none;
+            background: var(--card-bg);
             color: white;
-            font-size: 1.5rem;
-            transition: 0.3s;
+            appearance: none;
+            cursor: pointer;
         }
 
-        .social-links a:hover {
+        .filter-group::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
             color: var(--accent);
-            transform: translateY(-3px);
         }
 
-        /* Лоадер для асинхронной загрузки */
+        /* Loader */
         .loader {
             display: none;
             text-align: center;
-            padding: 1rem;
+            padding: 2rem;
         }
 
-        /* Кнопка "Наверх" */
+        .loader i {
+            font-size: 2rem;
+            color: var(--accent);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Scroll to top */
         .scroll-top {
             position: fixed;
             bottom: 20px;
@@ -295,7 +413,7 @@
             justify-content: center;
             cursor: pointer;
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: var(--transition);
             z-index: 99;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
@@ -304,44 +422,92 @@
             opacity: 1;
         }
 
-        /* Адаптивные стили */
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f0f1a;
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Skeleton Loading */
+        .skeleton {
+            background: linear-gradient(90deg, rgba(30, 30, 50, 0.5), rgba(50, 50, 70, 0.5), rgba(30, 30, 50, 0.5));
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 10px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Responsive Styles */
         @media (max-width: 992px) {
             .anime-grid {
-                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 1.2rem;
             }
         }
 
         @media (max-width: 768px) {
-            header {
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
-            
             .menu-toggle {
-                display: block;
-                order: 1;
-            }
-            
-            .logo {
-                order: 2;
-                flex-grow: 1;
-                text-align: center;
-            }
-            
-            .search-bar {
-                order: 4;
-                margin: 0.5rem 0 0;
-                max-width: 100%;
-                width: 100%;
-            }
-            
-            nav {
-                order: 3;
-                width: 100%;
-                display: none;
-            }
-            
-            nav.active {
                 display: block;
             }
             
@@ -352,7 +518,6 @@
             }
             
             nav a {
-                display: block;
                 padding: 0.8rem 1rem;
                 border-top: 1px solid rgba(255, 255, 255, 0.1);
             }
@@ -362,23 +527,32 @@
                 min-height: 300px;
             }
             
-            .hero-content {
-                padding: 0 1rem;
+            .search-container {
+                order: 4;
+                width: 100%;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+            }
+            
+            .filters {
+                flex-direction: column;
+            }
+            
+            .filter-group {
+                width: 100%;
             }
         }
 
         @media (max-width: 480px) {
             .anime-grid {
-                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-                gap: 0.8rem;
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 1rem;
             }
             
-            .anime-info h3 {
-                font-size: 0.8rem;
-            }
-            
-            .anime-info .rating {
-                font-size: 0.8rem;
+            .hero-content {
+                padding: 0 1rem;
             }
             
             .btn {
@@ -393,79 +567,48 @@
         <button class="menu-toggle" aria-label="Меню">
             <i class="fas fa-bars"></i>
         </button>
-        <a href="index.html" class="logo">Anime<span>HUB</span></a>
+        <a href="index.html" class="logo">
+            <i class="fas fa-play-circle"></i>Anime<span>HUB</span>
+        </a>
+        
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" placeholder="Поиск аниме..." aria-label="Поиск аниме">
+                <button title="Поиск"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        
         <nav id="main-nav">
             <ul>
                 <li><a href="#">Главная</a></li>
                 <li><a href="catalog.html">Каталог</a></li>
-                <li><a href="top.html">Топ аниме</a></li>
-                <li><a href="profile.html">Профиль</a></li>
             </ul>
         </nav>
-        <div class="search-bar">
-            <input type="text" placeholder="Поиск аниме..." aria-label="Поиск аниме">
-            <button title="Поиск"><i class="fas fa-search"></i></button>
-        </div>
     </header>
 
     <section class="hero">
         <div class="hero-content">
             <h1>Смотри аниме онлайн бесплатно</h1>
             <p>Тысячи аниме на любой вкус: сёнен, романтика, фэнтези и многое другое!</p>
-            <button class="btn">Смотреть сейчас</button>
+            <div class="hero-buttons">
+                <a href="catalog.html" class="btn">Смотреть сейчас</a>
+                <a href="top.html" class="btn btn-outline">Топ аниме</a>
+            </div>
         </div>
     </section>
 
-    <div class="container">
-        <h2 class="section-title">Популярные аниме</h2>
-        <div class="anime-grid">
-            <!-- Первые 6 карточек для примера -->
-            <div class="anime-card" onclick="window.location.href='anime.html?id='1">
-                <img src="https://avatars.mds.yandex.net/i?id=947ae7f0dde5dbc08feca48cf09b793abcfc80c5-5161061-images-thumbs&n=13" alt="Магичка" loading="lazy">
-                <div class="anime-info">
-                    <h3>Магическая Битва</h3>
-                    <p class="rating">★ 9.1</p>
-                </div>
-            </div>
-            <div class="anime-card" onclick="window.location.href='anime.html?id='2">
-                <img src="https://avatars.mds.yandex.net/i?id=c11781aa755f0e749ee89e6b6b8c6705b15ff75a-5878141-images-thumbs&n=13" alt="Гачиакута" loading="lazy">
-                <div class="anime-info">
-                    <h3>Гачиакута</h3>
-                    <p class="rating">★ 8.7</p>
-                </div>
-            </div>
-            <div class="anime-card" onclick="window.location.href='anime.html?id='3">
-                <img src="https://avatars.mds.yandex.net/i?id=05d71006673476f6a3a52a047105924dabd234ac-5221753-images-thumbs&n=13" alt="Хроники людей и демонов" loading="lazy">
-                <div class="anime-info">
-                    <h3>Хроники людей и демонов</h3>
-                    <p class="rating">★ 8.7</p>
-                </div>
-            </div>
-            <div class="anime-card" onclick="window.location.href='anime.html?id=4'">
-                <img src="https://avatars.mds.yandex.net/i?id=7fd7727520ce0f677e72f3286f58c7c2ab601133-4571688-images-thumbs&n=13" alt="Быть героем Икс" loading="lazy">
-                <div class="anime-info">
-                    <h3>Быть героем Икс</h3>
-                    <p class="rating">★ 8.7</p>
-                </div>
-            </div>
-            <div class="anime-card" onclick="window.location.href='anime.html?id=5'">
-                <img src="https://avatars.mds.yandex.net/i?id=0a5f68584b329f0173bab50ffb6405ad7a65fb1a-3687098-images-thumbs&n=13" alt="Ветерлом" loading="lazy">
-                <div class="anime-info">
-                    <h3>Ветерлом</h3>
-                    <p class="rating">★ 8.7</p>
-                </div>
-            </div>
-            <div class="anime-card" onclick="window.location.href='anime.html?id=6'">
-                <img src="https://avatars.mds.yandex.net/i?id=5d7f7202b9a0e4f9f2e7753f1aafdb6bdacec9c6-4420695-images-thumbs&n=13" alt="Дандандан" loading="lazy">
-                <div class="anime-info">
-                    <h3>Дандандан</h3>
-                    <p class="rating">★ 8.7</p>
-                </div>
-            </div>
+
+        <h2 class="section-title">
+            Популярные аниме
+            <a href="catalog.html" class="view-all">Смотреть все <i class="fas fa-arrow-right"></i></a>
+        </h2>
+        
+        <div class="anime-grid" id="anime-grid">
+            <!-- Anime cards will be loaded here -->
         </div>
 
         <div class="loader" id="loader">
-            <i class="fas fa-spinner fa-spin"></i> Загрузка...
+            <i class="fas fa-spinner"></i>
         </div>
 
         <button class="btn" id="load-more" style="display: block; margin: 0 auto;">Показать еще</button>
@@ -476,138 +619,244 @@
     </div>
 
     <footer>
+        <div class="footer-links">
+            <a href="about.html">О нас</a>
+            <a href="terms.html">Пользовательское соглашение</a>
+            <a href="privacy.html">Политика конфиденциальности</a>
+            <a href="contact.html">Контакты</a>
+        </div>
+        
         <div class="social-links">
             <a href="#" title="VK"><i class="fab fa-vk"></i></a>
             <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
             <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
         </div>
+        
         <p>© 2024 AnimeHUB. Все права защищены.</p>
     </footer>
 
     <script>
-        // Мобильное меню
+        // Mobile Menu Toggle
         const menuToggle = document.querySelector('.menu-toggle');
         const mainNav = document.getElementById('main-nav');
         
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
+            menuToggle.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
         });
 
-        // Поиск аниме
-        document.querySelector('.search-bar button').addEventListener('click', () => {
-            const query = document.querySelector('.search-bar input').value.trim();
+        // Search Functionality
+        const searchBar = document.querySelector('.search-bar');
+        const searchInput = document.querySelector('.search-bar input');
+        const searchButton = document.querySelector('.search-bar button');
+        
+        const performSearch = () => {
+            const query = searchInput.value.trim();
             if (query !== '') {
                 window.location.href = `search.html?q=${encodeURIComponent(query)}`;
             }
+        };
+        
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch();
         });
 
-        // Обработка нажатия Enter в поле поиска
-        document.querySelector('.search-bar input').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                const query = document.querySelector('.search-bar input').value.trim();
-                if (query !== '') {
-                    window.location.href = `search.html?q=${encodeURIComponent(query)}`;
-                }
-            }
-        });
-
-        // Кнопка "Наверх"
+        // Scroll to Top Button
         const scrollTopBtn = document.getElementById('scrollTop');
         
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
         });
         
         scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Ленивая загрузка и "Показать еще"
+        // Anime Data and Loading
+        const animeGrid = document.getElementById('anime-grid');
         const loadMoreBtn = document.getElementById('load-more');
         const loader = document.getElementById('loader');
-        let currentPage = 1;
         
-        // Здесь можно добавить загрузку данных с API
-        loadMoreBtn.addEventListener('click', () => {
+        let currentPage = 1;
+        let isLoading = false;
+        
+        // Sample anime data (in real app, this would come from API)
+        const animeData = [
+            {
+                id: 1,
+                title: "Магическая Битва",
+                image: "https://avatars.mds.yandex.net/i?id=947ae7f0dde5dbc08feca48cf09b793abcfc80c5-5161061-images-thumbs&n=13",
+                rating: 9.1,
+                year: 2020,
+                genres: ["shounen", "action"]
+            },
+            {
+                id: 2,
+                title: "Гачиакута",
+                image: "https://avatars.mds.yandex.net/i?id=c11781aa755f0e749ee89e6b6b8c6705b15ff75a-5878141-images-thumbs&n=13",
+                rating: 8.7,
+                year: 2023,
+                genres: ["shounen", "adventure"]
+            },
+            {
+                id: 3,
+                title: "Хроники людей и демонов",
+                image: "https://avatars.mds.yandex.net/i?id=05d71006673476f6a3a52a047105924dabd234ac-5221753-images-thumbs&n=13",
+                rating: 8.7,
+                year: 2023,
+                genres: ["fantasy", "adventure"]
+            },
+            {
+                id: 4,
+                title: "Быть героем Икс",
+                image: "https://avatars.mds.yandex.net/i?id=7fd7727520ce0f677e72f3286f58c7c2ab601133-4571688-images-thumbs&n=13",
+                rating: 8.7,
+                year: 2022,
+                genres: ["shounen", "action"]
+            },
+            {
+                id: 5,
+                title: "Ветерлом",
+                image: "https://avatars.mds.yandex.net/i?id=0a5f68584b329f0173bab50ffb6405ad7a65fb1a-3687098-images-thumbs&n=13",
+                rating: 8.7,
+                year: 2023,
+                genres: ["shounen", "sports"]
+            },
+            {
+                id: 6,
+                title: "Дандандан",
+                image: "https://avatars.mds.yandex.net/i?id=5d7f7202b9a0e4f9f2e7753f1aafdb6bdacec9c6-4420695-images-thumbs&n=13",
+                rating: 8.7,
+                year: 2023,
+                genres: ["shounen", "supernatural"]
+            }
+        ];
+        
+        // Function to render anime cards
+        function renderAnime(animeList) {
+            animeList.forEach(anime => {
+                const card = document.createElement('div');
+                card.className = 'anime-card';
+                card.innerHTML = `
+                    <img src="${anime.image}" alt="${anime.title}" loading="lazy">
+                    <div class="anime-info">
+                        <h3>${anime.title}</h3>
+                        <div class="meta">
+                            <span>${anime.year}</span>
+                            <span class="rating">★ ${anime.rating}</span>
+                        </div>
+                    </div>
+                `;
+                card.addEventListener('click', () => {
+                    window.location.href = `anime.html?id=${anime.id}`;
+                });
+                animeGrid.appendChild(card);
+            });
+        }
+        
+        // Initial load
+        renderAnime(animeData);
+        
+        // Load more functionality
+        loadMoreBtn.addEventListener('click', async () => {
+            if (isLoading) return;
+            
+            isLoading = true;
             loadMoreBtn.style.display = 'none';
             loader.style.display = 'block';
             
-            // Имитация загрузки данных
-            setTimeout(() => {
-                // В реальном приложении здесь будет fetch к API
-                const animeGrid = document.querySelector('.anime-grid');
-                const newAnime = [
-                    {
-                        id: 7,
-                        title: "Маг воды",
-                        image: "https://avatars.mds.yandex.net/i?id=e01ce52e5fd94387e821bed3de4c8c9afe4e410b-11018127-images-thumbs&n=13",
-                        rating: 8.7
-                    },
-                    {
-                        id: 8,
-                        title: "Re:Zero",
-                        image: "https://avatars.mds.yandex.net/i?id=aae770fefee0409f841f47adcf19cf5f64695ca9-5655212-images-thumbs&n=13",
-                        rating: 8.7
-                    },
-                    {
-                        id: 9,
-                        title: "Наруто",
-                        image: "https://avatars.mds.yandex.net/i?id=2b4cfa262904e87275ca80118a5b958b736415bf-12501129-images-thumbs&n=13",
-                        rating: 8.7
-                    },
-                    {
-                        id: 10,
-                        title: "Левиафан",
-                        image: "https://avatars.mds.yandex.net/i?id=51334374d38af24b77e43ddff65fdc4a1f241a41-12441694-images-thumbs&n=13",
-                        rating: 3.5
-                    },
-                    {
-                        id: 11,
-                        title: "Твоя форма",
-                        image: "https://avatars.mds.yandex.net/i?id=3ad6bc37a374ff8ac3cf4144a4e36767a8f0ab33-9181181-images-thumbs&n=13",
-                        rating: 8.7
-                    },
-                    {
-                        id: 12,
-                        title: "Пламенная бригада",
-                        image: "https://avatars.mds.yandex.net/i?id=7d326c43ef9225f449d6b04199a489032941c156-4872026-images-thumbs&n=13",
-                        rating: 8.7
-                    }
-                ];
-                
-                newAnime.forEach(anime => {
-                    const card = document.createElement('div');
-                    card.className = 'anime-card';
-                    card.onclick = () => window.location.href = `anime.html?id=${anime.id}`;
-                    card.innerHTML = `
-                        <img src="${anime.image}" alt="${anime.title}" loading="lazy">
-                        <div class="anime-info">
-                            <h3>${anime.title}</h3>
-                            <p class="rating">★ ${anime.rating}</p>
-                        </div>
-                    `;
-                    animeGrid.appendChild(card);
-                });
-                
-                loader.style.display = 'none';
-                loadMoreBtn.style.display = 'block';
-                currentPage++;
-                
-                // В реальном приложении нужно проверять, есть ли еще данные
-                if (currentPage >= 3) {
-                    loadMoreBtn.style.display = 'none';
+            // Simulate API call delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // In a real app, you would fetch more data from API here
+            const moreAnime = [
+                {
+                    id: 7,
+                    title: "Маг воды",
+                    image: "https://avatars.mds.yandex.net/i?id=e01ce52e5fd94387e821bed3de4c8c9afe4e410b-11018127-images-thumbs&n=13",
+                    rating: 8.7,
+                    year: 2021,
+                    genres: ["fantasy", "adventure"]
+                },
+                {
+                    id: 8,
+                    title: "Re:Zero",
+                    image: "https://avatars.mds.yandex.net/i?id=aae770fefee0409f841f47adcf19cf5f64695ca9-5655212-images-thumbs&n=13",
+                    rating: 8.7,
+                    year: 2016,
+                    genres: ["fantasy", "drama"]
+                },
+                {
+                    id: 9,
+                    title: "Наруто",
+                    image: "https://avatars.mds.yandex.net/i?id=2b4cfa262904e87275ca80118a5b958b736415bf-12501129-images-thumbs&n=13",
+                    rating: 8.7,
+                    year: 2002,
+                    genres: ["shounen", "action"]
+                },
+                {
+                    id: 10,
+                    title: "Левиафан",
+                    image: "https://avatars.mds.yandex.net/i?id=51334374d38af24b77e43ddff65fdc4a1f241a41-12441694-images-thumbs&n=13",
+                    rating: 3.5,
+                    year: 2023,
+                    genres: ["fantasy", "action"]
+                },
+                {
+                    id: 11,
+                    title: "Твоя форма",
+                    image: "https://avatars.mds.yandex.net/i?id=3ad6bc37a374ff8ac3cf4144a4e36767a8f0ab33-9181181-images-thumbs&n=13",
+                    rating: 8.7,
+                    year: 2021,
+                    genres: ["romance", "drama"]
+                },
+                {
+                    id: 12,
+                    title: "Пламенная бригада",
+                    image: "https://avatars.mds.yandex.net/i?id=7d326c43ef9225f449d6b04199a489032941c156-4872026-images-thumbs&n=13",
+                    rating: 8.7,
+                    year: 2019,
+                    genres: ["shounen", "action"]
                 }
-            }, 1000);
+            ];
+            
+            renderAnime(moreAnime);
+            
+            isLoading = false;
+            loader.style.display = 'none';
+            currentPage++;
+            
+            // Hide load more button if we've reached the end (in a real app)
+            if (currentPage >= 3) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'block';
+            }
         });
 
-        // Ленивая загрузка изображений
+        // Filter functionality
+        const genreFilter = document.getElementById('genre-filter');
+        const yearFilter = document.getElementById('year-filter');
+        const sortFilter = document.getElementById('sort-filter');
+        
+        function applyFilters() {
+            const genre = genreFilter.value;
+            const year = yearFilter.value;
+            const sort = sortFilter.value;
+            
+            // In a real app, you would fetch filtered/sorted data from API
+            console.log(`Applying filters: Genre=${genre}, Year=${year}, Sort=${sort}`);
+        }
+        
+        genreFilter.addEventListener('change', applyFilters);
+        yearFilter.addEventListener('change', applyFilters);
+        sortFilter.addEventListener('change', applyFilters);
+
+        // Lazy loading images
         if ('IntersectionObserver' in window) {
             const lazyImages = document.querySelectorAll('img[loading="lazy"]');
             
@@ -615,7 +864,9 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const img = entry.target;
-                        img.src = img.dataset.src || img.src;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                        }
                         imageObserver.unobserve(img);
                     }
                 });
