@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="Смотрите Гачиакута онлайн на AnimeHUB. Всё о сериале: описание, серии, похожие аниме.">
-    <title>Гачиакута | AnimeHUB</title>
+    <meta name="description" content="Смотрите Магичку онлайн на AnimeHUB. Всё о сериале: описание, серии, похожие аниме.">
+    <title>Магическая Битва | AnimeHUB</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -610,7 +610,7 @@
     <div class="container">
         <div class="anime-page">
             <div class="anime-poster">
-                <img src="https://avatars.mds.yandex.net/i?id=a42c6a37488da289ca9d8f232a1b8d949ec8ac62-5169780-images-thumbs&n=13" alt="Атака Титанов" loading="lazy">
+                <img src="https://avatars.mds.yandex.net/i?id=aa22f31eba34cd2ef1a6e6d1d175eefedcf0d3a0-6209271-images-thumbs&n=13" alt="Магичка" loading="lazy">
                 <div class="rating">
                     <i class="fas fa-star"></i> 9.1
                 </div>
@@ -624,18 +624,17 @@
             
             <div class="anime-content">
                 <div class="anime-details">
-                    <h1>Атака Титанов</h1>
+                    <h1>Магическая Битва</h1>
                     <div class="anime-meta">
                         <span><i class="fas fa-tv"></i> TV Сериал</span>
                         <span><i class="fas fa-calendar"></i> 2013</span>
                         <span><i class="fas fa-flag"></i> Завершён</span>
-                        <span><i class="fas fa-clock"></i> 25 мин/серия</span>
-                        <span><i class="fas fa-film"></i> 4 сезона</span>
+                        <span><i class="fas fa-clock"></i> 23 мин/серия</span>
+                        <span><i class="fas fa-film"></i> 2 сезона</span>
                     </div>
                     
                     <div class="anime-description">
-                        <p>Человечество живёт в страхе перед Титанами — гигантскими существами, пожирающими людей. Остатки человечества укрылись за огромными стенами, но однажды титаны прорывают оборону, и начинается борьба за выживание. Главный герой — Эрен Йегер, который клянётся уничтожить всех титанов.</p>
-                        <p>Аниме основано на манге Хадзимэ Исаямы и считается одним из самых популярных и влиятельных аниме 2010-х годов. Сериал получил признание за сложный сюжет, глубокую проработку персонажей и потрясающую анимацию боевых сцен.</p>
+                        <p>Ни для кого из граждан не будет секретом, что в мире людей существуют потусторонние силы, которые всячески пытаются стать частью их жизни. Демонические сущности всегда жаждут полакомиться человеческой душой. Демонологам давно известна легенда о великом демоне Рёмэн Сукун, который творил ужасные вещи. Вот только лучшим экзорцистам удалось уничтожить демоническое отродье и запечатать части его тела по всему миру. Никто и не мог подумать, что спустя несколько столетий печать ослабнет. Юдзи Итадори должен был вступить в атлетический кружок, но он выбрал клуб оккультистов. Школьнику нравится изучать разные мистические явления, а к тому же он нашёл в клубе настоящих друзей. В один злополучный вечер Итадори познакомился с необычным парнем, который предупредил юношу о большой опасности. Ребята отправились в школу, но опоздали, ведь подруга Юдзи умудрилась полностью снять печать заточения демона Сукун. Всё учебное заведение наполнилось жуткими тварями, которые не только были голодны, но и желали собрать все части тела господина.</p>
                     </div>
                     
                     <div class="anime-tags">
@@ -652,12 +651,12 @@
                 
                 <div class="player-section">
                     <div class="player-header">
-                        <h3>Серия 1: «Тот день»</h3>
+                        <h3 id="current-episode-title">Серия 1: «Двуликий призрак»</h3>
                         <div class="player-controls">    
                         </div>
                     </div>
                     <div class="player">
-                        <video controls poster="https://files.catbox.moe/y0ljc4.jpg">
+                        <video id="video-player" controls poster="https://files.catbox.moe/y0ljc4.jpg">
                             <source src="https://files.catbox.moe/7rx4l0.mp4" type="video/mp4">
                             Ваш браузер не поддерживает видео.
                         </video>
@@ -667,180 +666,13 @@
                 <div class="episodes-section">
                     <h2 class="section-title">Список серий</h2>
                     <div class="season-selector">
-                        <select>
-                            <option>Сезон 1 (25 серий)</option>
-
+                        <select id="season-select">
+                            <option value="season1">Сезон 1 (25 серий)</option>
+                            <option value="season2">Сезон 2 (23 серии)</option>
                         </select>
                     </div>
-                    <div class="episode-list">
-                        <div class="episode-card active">
-                            <img src="https://files.catbox.moe/y0ljc4.jpg" alt="Серия 1" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 1</h3>
-                                <p>Двуликий призрак</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://files.catbox.moe/gwz3is.jpg" alt="Серия 2" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 2</h3>
-                                <p>Ради себя</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://files.catbox.moe/atq9nz.jpg" alt="Серия 3" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 3</h3>
-                                <p>Железная девушка</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://files.catbox.moe/1ctzyo.jpg" alt="Серия 4" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 4</h3>
-                                <p>Устранение сферы с проклятием (часть 1)</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/5_1604482010.jpg" alt="Серия 5" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 5</h3>
-                                <p>Устранение сферы с проклятием (часть 2)</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/6_1605008551.jpg" alt="Серия 6" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 6</h3>
-                                <p>После дождя</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/7_1605384002.jpg" alt="Серия 7" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 7</h3>
-                                <p>Нападение</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/8_1606058785.jpg" alt="Серия 8" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 8</h3>
-                                <p>Скучный</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/9_1606685727.jpg" alt="Серия 9" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 9</h3>
-                                <p>Мелкая сошка и «обратная» месть</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/10_1607283232.jpg" alt="Серия 10" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 10</h3>
-                                <p>Инертная трансформация</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/11_1607961098.jpg" alt="Серия 11" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 11</h3>
-                                <p>Узколобость</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/12_1608497593.jpg" alt="Серия 12" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 12</h3>
-                                <p>Ради прежнего тебя</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/13_1609329731.jpg" alt="Серия 13" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 13</h3>
-                                <p>Увидимся завтра</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/14_1611091466.jpg" alt="Серия 14" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 14</h3>
-                                <p>Программа обмена с киотской школой (часть 0)</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/15_1611587760.jpg" alt="Серия 15" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 15</h3>
-                                <p>Программа обмена с киотской школой (часть 1)</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/16_1612163741.jpg" alt="Серия 16" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 16</h3>
-                                <p>Программа обмена с киотской школой (часть 2)</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/17_1612780248.jpg" alt="Серия 17" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 17</h3>
-                                <p>Программа обмена с киотской школой (часть 3)</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/18_1613463473.jpg" alt="Серия 18" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 18</h3>
-                                <p>Мудрец</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/19_1613987886.jpg" alt="Серия 19" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 19</h3>
-                                <p>Чёрная молния</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/20_1614598406.jpg" alt="Серия 20" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 20</h3>
-                                <p>Нестандартный</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/21_1615214275.jpg" alt="Серия 21" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 21</h3>
-                                <p>Магический "Косиэн"</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/22_1615844087.jpg" alt="Серия 22" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 22</h3>
-                                <p>Истоки слепой покорности (часть 1)</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/23_1616440376.jpg" alt="Серия 23" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 23</h3>
-                                <p>Истоки слепой покорности (часть 2)</p>
-                            </div>
-                        </div>
-                        <div class="episode-card">
-                            <img src="https://gen.jut.su/uploads/preview/598/0/0/24_1617005924.jpg" alt="Серия 24" loading="lazy">
-                            <div class="episode-info">
-                                <h3>Серия 24</h3>
-                                <p>Сообщники</p>
-                            </div>
-                        </div>
+                    <div class="episode-list" id="episode-list">
+                        <!-- Серии будут добавлены через JavaScript -->
                     </div>
                 </div>
                 
@@ -903,6 +735,360 @@
     </footer>
 
     <script>
+        // Данные о сериях
+        const seasons = {
+            season1: [
+                {
+                    number: 1,
+                    title: "Двуликий призрак",
+                    videoUrl: "https://files.catbox.moe/7rx4l0.mp4",
+                    posterUrl: "https://files.catbox.moe/y0ljc4.jpg"
+                },
+                {
+                    number: 2,
+                    title: "Ради себя",
+                    videoUrl: "https://files.catbox.moe/jiw4xr.mp4",
+                    posterUrl: "https://files.catbox.moe/gwz3is.jpg"
+                },
+                {
+                    number: 3,
+                    title: "Железная девушка",
+                    videoUrl: "https://files.catbox.moe/v224h3.mp4",
+                    posterUrl: "https://files.catbox.moe/atq9nz.jpg"
+                },
+                {
+                    number: 4,
+                    title: "Устранение сферы с проклятием (часть 1)",
+                    videoUrl: "https://files.catbox.moe/5155ix.mp4",
+                    posterUrl: "https://files.catbox.moe/1ctzyo.jpg"
+                },
+                {
+                    number: 5,
+                    title: "Устранение сферы с проклятием (часть 2)",
+                    videoUrl: "https://files.catbox.moe/0luny5.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/5_1604482010.jpg"
+                },
+                {
+                    number: 6,
+                    title: "После дождя",
+                    videoUrl: "https://files.catbox.moe/sxf7jy.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/6_1605008551.jpg"
+                },
+                {
+                    number: 7,
+                    title: "Нападение",
+                    videoUrl: "https://files.catbox.moe/aq31k3.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/7_1605384002.jpg"
+                },
+                {
+                    number: 8,
+                    title: "Скучный",
+                    videoUrl: "https://files.catbox.moe/idold8.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/8_1606058785.jpg"
+                },
+                {
+                    number: 9,
+                    title: "Мелкая сошка и «обратная» месть",
+                    videoUrl: "https://files.catbox.moe/9iuojk.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/9_1606685727.jpg"
+                },
+                {
+                    number: 10,
+                    title: "Инертная трансформация",
+                    videoUrl: "https://files.catbox.moe/0y76n7.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/10_1607283232.jpg"
+                },
+                {
+                    number: 11,
+                    title: "Узколобость",
+                    videoUrl: "https://files.catbox.moe/k0m5ig.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/11_1607961098.jpg"
+                },
+                {
+                    number: 12,
+                    title: "Ради прежнего тебя",
+                    videoUrl: "https://files.catbox.moe/9iuk2o.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/12_1608497593.jpg"
+                },
+                {
+                    number: 13,
+                    title: "Увидимся завтра",
+                    videoUrl: "https://files.catbox.moe/6rskuw.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/13_1609329731.jpg"
+                },
+                {
+                    number: 14,
+                    title: "Программа обмена с киотской школой (часть 0)",
+                    videoUrl: "https://files.catbox.moe/ec1ru4.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/14_1611091466.jpg"
+                },
+                {
+                    number: 15,
+                    title: "Программа обмена с киотской школой (часть 1)",
+                    videoUrl: "https://files.catbox.moe/9htkqn.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/15_1611587760.jpg"
+                },
+                {
+                    number: 16,
+                    title: "Программа обмена с киотской школой (часть 2)",
+                    videoUrl: "https://files.catbox.moe/3e5ibj.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/16_1612163741.jpg"
+                },
+                {
+                    number: 17,
+                    title: "Программа обмена с киотской школой (часть 3)",
+                    videoUrl: "https://files.catbox.moe/59wpzr.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/17_1612780248.jpg"
+                },
+                {
+                    number: 18,
+                    title: "Мудрец",
+                    videoUrl: "https://files.catbox.moe/esrvu7.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/18_1613463473.jpg"
+                },
+                {
+                    number: 19,
+                    title: "Чёрная молния",
+                    videoUrl: "https://files.catbox.moe/m4xf1a.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/19_1613987886.jpg"
+                },
+                {
+                    number: 20,
+                    title: "Нестандартный",
+                    videoUrl: "https://files.catbox.moe/wg2bnr.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/20_1614598406.jpg"
+                },
+                {
+                    number: 21,
+                    title: "Магический \"Косиэн\"",
+                    videoUrl: "https://files.catbox.moe/my8cp8.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/21_1615214275.jpg"
+                },
+                {
+                    number: 22,
+                    title: "Истоки слепой покорности (часть 1)",
+                    videoUrl: "https://files.catbox.moe/ghsrjm.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/22_1615844087.jpg"
+                },
+                {
+                    number: 23,
+                    title: "Истоки слепой покорности (часть 2)",
+                    videoUrl: "https://files.catbox.moe/n86pp9.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/23_1616440376.jpg"
+                },
+                {
+                    number: 24,
+                    title: "Сообщники",
+                    videoUrl: "https://files.catbox.moe/g9lnwj.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/0/24_1617005924.jpg"
+                }
+            ],
+            season2: [
+                {
+                    number: 1,
+                    title: "Кайгёку, часть первая!",
+                    videoUrl: "https://files.catbox.moe/chojo4.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/2/1_1688645284.jpg"
+                },
+                {
+                    number: 2,
+                    title: "Кайгёку, часть вторая!",
+                    videoUrl: "https://files.catbox.moe/n62dxp.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/598/0/2/2_1689330160.jpg"
+                },
+                {
+                    number: 3,
+                    title: "Искажение",
+                    videoUrl: "https://files.catbox.moe/0tx8zu.mp4",
+                    posterUrl: "https://example.com/s2ep3.jpg"
+                },
+                {
+                    number: 4,
+                    title: "История",
+                    videoUrl: "https://files.catbox.moe/keu8bm.mp4",
+                    posterUrl: "https://example.com/s2ep4.jpg"
+                },
+                {
+                    number: 5,
+                    title: "Дети леса",
+                    videoUrl: "https://files.catbox.moe/keu8bm.mp4",
+                    posterUrl: "https://example.com/s2ep5.jpg"
+                },
+                {
+                    number: 6,
+                    title: "Из-за стены",
+                    videoUrl: "https://files.catbox.moe/kc0pnz.mp4",
+                    posterUrl: "https://example.com/s2ep6.jpg"
+                },
+                {
+                    number: 7,
+                    title: "Встречный удар",
+                    videoUrl: "https://files.catbox.moe/xge4y4.mp4",
+                    posterUrl: "https://example.com/s2ep7.jpg"
+                },
+                {
+                    number: 8,
+                    title: "Охота",
+                    videoUrl: "https://files.catbox.moe/a70no5.mp4",
+                    posterUrl: "https://example.com/s2ep8.jpg"
+                },
+                {
+                    number: 9,
+                    title: "Открытие",
+                    videoUrl: "https://files.catbox.moe/so8xio.mp4",
+                    posterUrl: "https://example.com/s2ep9.jpg"
+                },
+                {
+                    number: 10,
+                    title: "Ответ",
+                    videoUrl: "https://files.catbox.moe/fi7vpr.mp4",
+                    posterUrl: "https://example.com/s2ep10.jpg"
+                },
+                {
+                    number: 11,
+                    title: "Стальной",
+                    videoUrl: "https://files.catbox.moe/vh3mv6.mp4",
+                    posterUrl: "https://example.com/s2ep11.jpg"
+                },
+                {
+                    number: 12,
+                    title: "Крик",
+                    videoUrl: "https://files.catbox.moe/zqmqdx.mp4",
+                    posterUrl: "https://example.com/s2ep12.jpg"
+                },
+                {
+                    number: 13,
+                    title: "Дети",
+                    videoUrl: "https://files.catbox.moe/rr4w2y.mp4",
+                    posterUrl: "https://example.com/s2ep13.jpg"
+                },
+                {
+                    number: 14,
+                    title: "Визит",
+                    videoUrl: "https://files.catbox.moe/8o3onz.mp4",
+                    posterUrl: "https://example.com/s2ep14.jpg"
+                },
+                {
+                    number: 15,
+                    title: "Сон",
+                    videoUrl: "https://files.catbox.moe/bchwz7.mp4",
+                    posterUrl: "https://example.com/s2ep15.jpg"
+                },
+                {
+                    number: 16,
+                    title: "Толпа",
+                    videoUrl: "https://files.catbox.moe/qt0ip6.mp4",
+                    posterUrl: "https://example.com/s2ep16.jpg"
+                },
+                {
+                    number: 17,
+                    title: "Герой",
+                    videoUrl: "https://files.catbox.moe/zy0z5b.mp4",
+                    posterUrl: "https://example.com/s2ep17.jpg"
+                },
+                {
+                    number: 18,
+                    title: "Сосед",
+                    videoUrl: "https://files.catbox.moe/jd5n62.mp4",
+                    posterUrl: "https://example.com/s2ep18.jpg"
+                },
+                {
+                    number: 19,
+                    title: "Повелитель",
+                    videoUrl: "https://files.catbox.moe/j6fubl.mp4",
+                    posterUrl: "https://example.com/s2ep19.jpg"
+                },
+                {
+                    number: 20,
+                    title: "Прощание",
+                    videoUrl: "https://files.catbox.moe/qdl3je.mp4",
+                    posterUrl: "https://example.com/s2ep20.jpg"
+                },
+                {
+                    number: 21,
+                    title: "Обвинитель",
+                    videoUrl: "https://files.catbox.moe/1hya3f.mp4",
+                    posterUrl: "https://example.com/s2ep21.jpg"
+                },
+                {
+                    number: 22,
+                    title: "Преследователь",
+                    videoUrl: "https://files.catbox.moe/xzwjpa.mp4",
+                    posterUrl: "https://example.com/s2ep22.jpg"
+                },
+                {
+                    number: 23,
+                    title: "Солнце",
+                    videoUrl: "https://files.catbox.moe/tanu80.mp4",
+                    posterUrl: "https://example.com/s2ep23.jpg"
+                }
+            ]
+        };
+
+        // Инициализация плеера и списка серий
+        const videoPlayer = document.getElementById('video-player');
+        const episodeList = document.getElementById('episode-list');
+        const currentEpisodeTitle = document.getElementById('current-episode-title');
+        const seasonSelect = document.getElementById('season-select');
+
+        // Заполнение списка серий
+        function renderEpisodes(seasonId) {
+            const episodes = seasons[seasonId];
+            episodeList.innerHTML = '';
+            
+            episodes.forEach(episode => {
+                const episodeCard = document.createElement('div');
+                episodeCard.className = 'episode-card';
+                if (episode.number === 1 && seasonId === 'season1') episodeCard.classList.add('active');
+                
+                episodeCard.innerHTML = `
+                    <img src="${episode.posterUrl}" alt="Серия ${episode.number}" loading="lazy">
+                    <div class="episode-info">
+                        <h3>Серия ${episode.number}</h3>
+                        <p>${episode.title}</p>
+                    </div>
+                `;
+                
+                episodeCard.addEventListener('click', () => {
+                    // Удаляем класс active у всех карточек
+                    document.querySelectorAll('.episode-card').forEach(card => {
+                        card.classList.remove('active');
+                    });
+                    
+                    // Добавляем класс active к текущей карточке
+                    episodeCard.classList.add('active');
+                    
+                    // Обновляем плеер
+                    updatePlayer(episode);
+                    
+                    // Прокручиваем к плееру
+                    document.querySelector('.player-section').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+                
+                episodeList.appendChild(episodeCard);
+            });
+        }
+
+        // Обновление плеера
+        function updatePlayer(episode) {
+            currentEpisodeTitle.textContent = `Серия ${episode.number}: «${episode.title}»`;
+            videoPlayer.poster = episode.posterUrl;
+            videoPlayer.querySelector('source').src = episode.videoUrl;
+            videoPlayer.load();
+            
+            // Если видео уже было загружено, начинаем воспроизведение
+            if (!videoPlayer.paused) {
+                videoPlayer.play().catch(e => console.log('Autoplay prevented:', e));
+            }
+        }
+
+        // Обработчик изменения сезона
+        seasonSelect.addEventListener('change', (e) => {
+            renderEpisodes(e.target.value);
+        });
+
         // Мобильное меню
         const menuToggle = document.querySelector('.menu-toggle');
         const mainNav = document.getElementById('main-nav');
@@ -947,45 +1133,29 @@
             });
         });
 
-        // Переключение серий
-        document.querySelectorAll('.episode-card').forEach(card => {
-            card.addEventListener('click', function() {
-                document.querySelector('.episode-card.active')?.classList.remove('active');
-                this.classList.add('active');
-                
-                // Здесь можно добавить загрузку новой серии
-                const episodeTitle = this.querySelector('h3').textContent + ': ' + 
-                                    this.querySelector('p').textContent;
-                document.querySelector('.player-header h3').textContent = episodeTitle;
-                
-                // В реальном приложении здесь будет загрузка видео
-            });
-        });
-
-        // Переключение сезонов
-        document.querySelector('.season-selector select').addEventListener('change', function() {
-            // Здесь можно добавить загрузку списка серий для выбранного сезона
-            console.log('Выбран сезон:', this.value);
-        });
-
-        // Ленивая загрузка изображений
-        if ('IntersectionObserver' in window) {
-            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            renderEpisodes('season1');
             
-            const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src || img.src;
-                        imageObserver.unobserve(img);
-                    }
+            // Ленивая загрузка изображений
+            if ('IntersectionObserver' in window) {
+                const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+                
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src || img.src;
+                            imageObserver.unobserve(img);
+                        }
+                    });
                 });
-            });
-            
-            lazyImages.forEach(img => {
-                imageObserver.observe(img);
-            });
-        }
+                
+                lazyImages.forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+        });
     </script>
 </body>
 </html>
