@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Смотрите Магичку онлайн на AnimeHUB. Всё о сериале: описание, серии, похожие аниме.">
+    <title>Дандандан | AnimeHUB</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6a0dad;
+            --secondary: #4b0082;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --accent: #ff6b6b;
+            --card-bg: rgba(30, 30, 50, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        /* Улучшенный header с адаптивным меню */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        /* Гамбургер меню для мобильных */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            padding: 0.5rem;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 0.5rem;
+            margin-left: 1rem;
+            flex-grow: 1;
+            max-width: 300px;
+        }
+
+        .search-bar input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            width: 100%;
+            padding: 0.3rem;
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-bar button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0 0.5rem;
+        }
+
+        /* Основной контейнер */
+        .container {
+            padding: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Страница аниме */
+        .anime-page {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        /* Постер аниме */
+        .anime-poster {
+            position: sticky;
+            top: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            height: fit-content;
+        }
+
+        .anime-poster img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            aspect-ratio: 2/3;
+            object-fit: cover;
+        }
+
+        .anime-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: white;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(255, 107, 107, 0.3);
+        }
+
+        .rating {
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin: 0.5rem 0;
+            width: fit-content;
+        }
+
+        /* Детали аниме */
+        .anime-details h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .anime-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .anime-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .anime-description {
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .anime-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            background: rgba(106, 13, 173, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid var(--primary);
+        }
+
+        /* Плеер */
+        .player-section {
+            margin-top: 2rem;
+            background: rgba(30, 30, 50, 0.7);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .player-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .player-header h3 {
+            font-size: 1.2rem;
+        }
+
+        .player-controls {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .player-controls select {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            outline: none;
+            min-width: 150px;
+        }
+
+        .player {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000;
+            aspect-ratio: 16/9;
+        }
+
+        .player video {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Список серий */
+        .episodes-section {
+            margin-top: 3rem;
+        }
+
+        .section-title {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: white;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .season-selector {
+            margin-bottom: 1.5rem;
+        }
+
+        .season-selector select {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            outline: none;
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .episode-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1rem;
+        }
+
+        .episode-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .episode-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .episode-card.active {
+            border: 2px solid var(--accent);
+        }
+
+        .episode-card img {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+        }
+
+        .episode-info {
+            padding: 0.8rem;
+        }
+
+        .episode-info h3 {
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .episode-info p {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Похожие аниме */
+        .similar-section {
+            margin-top: 3rem;
+        }
+
+        .similar-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .similar-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .similar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .similar-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .similar-info {
+            padding: 0.8rem;
+        }
+
+        .similar-info h3 {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Футер */
+        footer {
+            background: #0f0f1a;
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Кнопка "Наверх" */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 99;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        /* Адаптивные стили */
+        @media (max-width: 992px) {
+            .anime-page {
+                grid-template-columns: 240px 1fr;
+                gap: 1.5rem;
+            }
+            
+            .similar-list {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .menu-toggle {
+                display: block;
+                order: 1;
+            }
+            
+            .logo {
+                order: 2;
+                flex-grow: 1;
+                text-align: center;
+            }
+            
+            .search-bar {
+                order: 4;
+                margin: 0.5rem 0 0;
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            nav {
+                order: 3;
+                width: 100%;
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+            }
+            
+            nav a {
+                display: block;
+                padding: 0.8rem 1rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .anime-page {
+                grid-template-columns: 1fr;
+            }
+            
+            .anime-poster {
+                position: static;
+                max-width: 300px;
+                margin: 0 auto 1.5rem;
+            }
+            
+            .episode-list {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+            
+            .similar-list {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            }
+            
+            .similar-card img {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .anime-poster {
+                max-width: 100%;
+            }
+            
+            .player-controls {
+                width: 100%;
+            }
+            
+            .player-controls select {
+                flex-grow: 1;
+                min-width: auto;
+            }
+            
+            .episode-list {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 0.8rem;
+            }
+            
+            .similar-list {
+                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+                gap: 0.8rem;
+            }
+            
+            .similar-card img {
+                height: 150px;
+            }
+            
+            .btn {
+                padding: 0.6rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="menu-toggle" aria-label="Меню">
+            <i class="fas fa-bars"></i>
+        </button>
+        <a href="index.html" class="logo">Anime<span>HUB</span></a>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Поиск аниме..." aria-label="Поиск аниме">
+            <button title="Поиск"><i class="fas fa-search"></i></button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="anime-page">
+            <div class="anime-poster">
+                <img src="https://avatars.mds.yandex.net/i?id=783d348ebf06ad3b46fc9896c4d75b4baa34d000-5359302-images-thumbs&n=13" alt="Дандандан" loading="lazy">
+                <div class="rating">
+                    <i class="fas fa-star"></i> 9.1
+                </div>
+                <div class="anime-actions">
+                    <button class="btn">
+                        <i class="fas fa-play"></i> Смотреть
+                    </button>
+
+                </div>
+            </div>
+            
+            <div class="anime-content">
+                <div class="anime-details">
+                    <h1>Дандандан</h1>
+                    <div class="anime-meta">
+                        <span><i class="fas fa-tv"></i> TV Сериал</span>
+                        <span><i class="fas fa-calendar"></i> 2013</span>
+                        <span><i class="fas fa-flag"></i> незавершён</span>
+                        <span><i class="fas fa-clock"></i> 23 мин/серия</span>
+                        <span><i class="fas fa-film"></i> 2 сезона</span>
+                    </div>
+                    
+                    <div class="anime-description">
+                        <p>Вспыльчивая Момо Аясэ подралась со своим парнем, который обвинил девчонку в никчёмности и нагло её бросил. В расстроенных чувствах школьница оправилась искать утешение у подруг, но там она получила лишь очередной негатив. Девушка начала бродить по школьному коридору и случайно увидела скромного мальчишку. Одноклассники издевались над бедолагой, а потому красавица решила заступиться за юношу. Оказалось, что Кэн Такакура увлекается уфологией, но не верит в призраков. Вот только Момо является потомственным экстрасенсом, ведь её бабушка была известным экзорцистом. Аясэ вовсе не верит в НЛО и считает, что это выдумка правительства. Знакомство ребят закончилось тем, что школьники заключили пари. Каждый из подростков хочет показать наяву признаки существования пришельцев и духов. Такакура отправился в зловещий туннель, где повстречал сумасшедшего призрака старой бабки, а девушку похитили пришельцы. Началось настоящее безумие, но ребятам удалось уничтожить инопланетный корабль. Новоиспечённым друзям рано было радоваться, ведь Кэн получил метку проклятого, которую нужно обязательно снять.</p>
+                    </div>
+                    
+                    <div class="anime-tags">
+                        <span class="tag">Экшен</span>
+                        <span class="tag">Драма</span>
+                        <span class="tag">Фэнтези</span>
+                        <span class="tag">Сёнен</span>
+                        <span class="tag">Трагедия</span>
+                        <span class="tag">Военный</span>
+                        <span class="tag">Постапокалипсис</span>
+                        <span class="tag">Тёмное фэнтези</span>
+                    </div>
+                </div>
+                
+                <div class="player-section">
+                    <div class="player-header">
+                        <h3 id="current-episode-title">Серия 1: «Вообще-то так зарождается любовь»</h3>
+                        <div class="player-controls">    
+                        </div>
+                    </div>
+                    <div class="player">
+                        <video id="video-player" controls poster="https://gen.jut.su/uploads/preview/1100/0/0/1_1728045244.jpg">
+                            <source src="https://files.catbox.moe/il63oj.mp4" type="video/mp4">
+                            Ваш браузер не поддерживает видео.
+                        </video>
+                    </div>
+                </div>
+                 
+                <div class="episodes-section">
+                    <h2 class="section-title">Список серий</h2>
+                    <div class="season-selector">
+                        <select id="season-select">
+                            <option value="season1">Сезон 1 (13 серий)</option>
+                            <option value="season2">Сезон 2 (12 серии)</option>
+                        </select>
+                    </div>
+                    <div class="episode-list" id="episode-list">
+                        <!-- Серии будут добавлены через JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="similar-section">
+                    <h2 class="section-title">Похожие аниме</h2>
+                    <div class="similar-list">
+                        <div class="similar-card" onclick="window.location.href='tokyo-ghoul.html'">
+                            <img src="https://avatars.mds.yandex.net/i?id=8d8608f172ed94e637e1b0851d4a2a97763d7830-5234690-images-thumbs&n=13" alt="Токийский Гуль" loading="lazy">
+                            <div class="similar-info">
+                                <h3>Токийский Гуль</h3>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i> 8.5
+                                </div>
+                            </div>
+                        </div>
+                        <div class="similar-card" onclick="window.location.href='anime2.html'">
+                            <img src="https://avatars.mds.yandex.net/i?id=5a05f9db847ab35df78fef86edf8ae39c995ddc0-5314093-images-thumbs&n=13" alt="Гачиакута" loading="lazy">
+                            <div class="similar-info">
+                                <h3>Гачиакута</h3>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i> 8.7
+                                </div>
+                            </div>
+                        </div>
+                        <div class="similar-card" onclick="window.location.href='demon-slayer.html'">
+                            <img src="https://avatars.mds.yandex.net/i?id=7db8c9d482a1c54f4c78d5c3d3f34c12782a5ffd-12525650-images-thumbs&n=13" alt="Клинок, рассекающий демонов" loading="lazy">
+                            <div class="similar-info">
+                                <h3>Клинок, рассекающий демонов</h3>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i> 8.8
+                                </div>
+                            </div>
+                        </div>
+                        <div class="similar-card" onclick="window.location.href='parasyte.html'">
+                            <img src="https://avatars.mds.yandex.net/i?id=068b565deb6e91fe6988b4a189b86f0e3005b17a-4033769-images-thumbs&n=13" alt="Паразит" loading="lazy">
+                            <div class="similar-info">
+                                <h3>Паразит</h3>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i> 8.3
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="scroll-top" id="scrollTop" title="Наверх">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" title="VK"><i class="fab fa-vk"></i></a>
+            <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
+            <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+        </div>
+        <p>© 2024 AnimeHUB. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Данные о сериях
+        const seasons = {
+            season1: [
+                {
+                    number: 1,
+                    title: "Вообще-то так зарождается любовь",
+                    videoUrl: "https://files.catbox.moe/il63oj.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/1100/0/0/1_1728045244.jpg"
+                },
+                {
+                    number: 2,
+                    title: "Инопланетяне!",
+                    videoUrl: "https://files.catbox.moe/3v56ru.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/1100/0/0/2_1728644107.jpg"
+                },
+                {
+                    number: 3,
+                    title: "Бабушка против бабушки!",
+                    videoUrl: "https://files.catbox.moe/kpvxxw.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/1100/0/0/3_1729228257.jpg"
+                },
+                {
+                    number: 4,
+                    title: "Надрать жопу турбо-бабке",
+                    videoUrl: "https://files.catbox.moe/xr2j5g.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/1100/0/0/4_1730060841.jpg"
+                },
+                {
+                    number: 5,
+                    title: "Где твои яйца?",
+                    videoUrl: "https://files.catbox.moe/bdo0th.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/1100/0/0/5_1730466390.jpg"
+                },
+                {
+                    number: 6,
+                    title: "Отстойная женщина",
+                    videoUrl: "https://files.catbox.moe/cl0aab.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/1100/0/0/6_1731083255.jpg"
+                },
+                {
+                    number: 7,
+                    title: "В мир, который добрее",
+                    videoUrl: "https://files.catbox.moe/qxfi75.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/1100/0/0/7_1731854738.jpg"
+                },
+                {
+                    number: 8,
+                    title: "Чувствую себя как-то странно",
+                    videoUrl: "https://files.catbox.moe/n4ll0r.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/1100/0/0/8_1732538236.jpg"
+                },
+                {
+                    number: 9,
+                    title: "Слияние! Серпо-доверский демон Несси!",
+                    videoUrl: "https://files.catbox.moe/cu6g66.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/1100/0/0/9_1733164013.jpg"
+                },
+                {
+                    number: 10,
+                    title: "Доводилось видеть увечье скота?",
+                    videoUrl: "https://files.catbox.moe/z0xzt8.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/1100/0/0/10_1733834976.jpg"
+                },
+                {
+                    number: 11,
+                    title: "Первая любовь",
+                    videoUrl: "https://files.catbox.moe/qh50ne.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/1100/0/0/11_1734359203.jpg"
+                },
+                {
+                    number: 12,
+                    title: "Двинули в проклятый дом",
+                    videoUrl: "https://files.catbox.moe/vhj6ac.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/1100/0/0/12_1734976938.jpg"
+                }
+            ],
+            season2: [
+                {
+                    number: 1,
+                    title: "Типа легенда о гигантской змеюке",
+                    videoUrl: "https://files.catbox.moe/nmnnqj.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/1100/0/2/1_1751813270.jpg"
+                },
+                {
+                    number: 2,
+                    title: "Сглаз",
+                    videoUrl: "https://files.catbox.moe/jl1x0h.mp4",
+                    posterUrl: "https://gen.jut.su/uploads/preview/1100/0/2/2_1752333295.jpg"
+                },
+                
+            ]
+        };
+
+        // Инициализация плеера и списка серий
+        const videoPlayer = document.getElementById('video-player');
+        const episodeList = document.getElementById('episode-list');
+        const currentEpisodeTitle = document.getElementById('current-episode-title');
+        const seasonSelect = document.getElementById('season-select');
+
+        // Заполнение списка серий
+        function renderEpisodes(seasonId) {
+            const episodes = seasons[seasonId];
+            episodeList.innerHTML = '';
+            
+            episodes.forEach(episode => {
+                const episodeCard = document.createElement('div');
+                episodeCard.className = 'episode-card';
+                if (episode.number === 1 && seasonId === 'season1') episodeCard.classList.add('active');
+                
+                episodeCard.innerHTML = `
+                    <img src="${episode.posterUrl}" alt="Серия ${episode.number}" loading="lazy">
+                    <div class="episode-info">
+                        <h3>Серия ${episode.number}</h3>
+                        <p>${episode.title}</p>
+                    </div>
+                `;
+                
+                episodeCard.addEventListener('click', () => {
+                    // Удаляем класс active у всех карточек
+                    document.querySelectorAll('.episode-card').forEach(card => {
+                        card.classList.remove('active');
+                    });
+                    
+                    // Добавляем класс active к текущей карточке
+                    episodeCard.classList.add('active');
+                    
+                    // Обновляем плеер
+                    updatePlayer(episode);
+                    
+                    // Прокручиваем к плееру
+                    document.querySelector('.player-section').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+                
+                episodeList.appendChild(episodeCard);
+            });
+        }
+
+        // Обновление плеера
+        function updatePlayer(episode) {
+            currentEpisodeTitle.textContent = `Серия ${episode.number}: «${episode.title}»`;
+            videoPlayer.poster = episode.posterUrl;
+            videoPlayer.querySelector('source').src = episode.videoUrl;
+            videoPlayer.load();
+            
+            // Если видео уже было загружено, начинаем воспроизведение
+            if (!videoPlayer.paused) {
+                videoPlayer.play().catch(e => console.log('Autoplay prevented:', e));
+            }
+        }
+
+        // Обработчик изменения сезона
+        seasonSelect.addEventListener('change', (e) => {
+            renderEpisodes(e.target.value);
+        });
+
+        // Мобильное меню
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+        
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+
+        // Поиск аниме
+        document.querySelector('.search-bar button').addEventListener('click', () => {
+            const query = document.querySelector('.search-bar input').value.trim();
+            if (query !== '') {
+                window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+            }
+        });
+
+        // Обработка нажатия Enter в поле поиска
+        document.querySelector('.search-bar input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const query = document.querySelector('.search-bar input').value.trim();
+                if (query !== '') {
+                    window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+                }
+            }
+        });
+
+        // Кнопка "Наверх"
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            renderEpisodes('season1');
+            
+            // Ленивая загрузка изображений
+            if ('IntersectionObserver' in window) {
+                const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+                
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src || img.src;
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
