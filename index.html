@@ -417,22 +417,22 @@
     <div class="container">
         <h2 class="section-title">Популярные аниме</h2>
         <div class="anime-grid">
-            <!-- Первые 6 карточек для примера -->
-            <div class="anime-card" onclick="window.location.href='anime1.html?id='">
+            <!-- Исправленные карточки с единым форматом URL и уникальными ID -->
+            <div class="anime-card" onclick="window.location.href='anime.html?id=1'">
                 <img src="https://avatars.mds.yandex.net/i?id=947ae7f0dde5dbc08feca48cf09b793abcfc80c5-5161061-images-thumbs&n=13" alt="Магичка" loading="lazy">
                 <div class="anime-info">
                     <h3>Магическая Битва</h3>
                     <p class="rating">★ 9.1</p>
                 </div>
             </div>
-            <div class="anime-card" onclick="window.location.href='anime2.html?id='">
+            <div class="anime-card" onclick="window.location.href='anime.html?id=2'">
                 <img src="https://avatars.mds.yandex.net/i?id=c11781aa755f0e749ee89e6b6b8c6705b15ff75a-5878141-images-thumbs&n=13" alt="Гачиакута" loading="lazy">
                 <div class="anime-info">
                     <h3>Гачиакута</h3>
                     <p class="rating">★ 8.7</p>
                 </div>
             </div>
-            <div class="anime-card" onclick="window.location.href='anime3.html?id='">
+            <div class="anime-card" onclick="window.location.href='anime.html?id=3'">
                 <img src="https://avatars.mds.yandex.net/i?id=05d71006673476f6a3a52a047105924dabd234ac-5221753-images-thumbs&n=13" alt="Хроники людей и демонов" loading="lazy">
                 <div class="anime-info">
                     <h3>Хроники людей и демонов</h3>
@@ -446,14 +446,14 @@
                     <p class="rating">★ 8.7</p>
                 </div>
             </div>
-            <div class="anime-card" onclick="window.location.href='anime5.html?id=5'">
+            <div class="anime-card" onclick="window.location.href='anime.html?id=5'">
                 <img src="https://avatars.mds.yandex.net/i?id=0a5f68584b329f0173bab50ffb6405ad7a65fb1a-3687098-images-thumbs&n=13" alt="Ветерлом" loading="lazy">
                 <div class="anime-info">
                     <h3>Ветерлом</h3>
                     <p class="rating">★ 8.7</p>
                 </div>
             </div>
-            <div class="anime-card" onclick="window.location.href='anime6.html?id=6'">
+            <div class="anime-card" onclick="window.location.href='anime.html?id=6'">
                 <img src="https://avatars.mds.yandex.net/i?id=5d7f7202b9a0e4f9f2e7753f1aafdb6bdacec9c6-4420695-images-thumbs&n=13" alt="Дандандан" loading="lazy">
                 <div class="anime-info">
                     <h3>Дандандан</h3>
@@ -510,6 +510,8 @@
         });
 
         // Кнопка "Наверх"
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
         const scrollTopBtn = document.getElementById('scrollTop');
         
         window.addEventListener('scroll', () => {
@@ -625,4 +627,4 @@
         }
     </script>
 </body>
-</html> 
+</html>
