@@ -29,7 +29,6 @@
             line-height: 1.6;
         }
 
-        /* Улучшенный header с адаптивным меню */
         header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             padding: 1rem;
@@ -54,7 +53,6 @@
             color: var(--accent);
         }
 
-        /* Гамбургер меню для мобильных */
         .menu-toggle {
             display: none;
             background: none;
@@ -116,7 +114,6 @@
             padding: 0 0.5rem;
         }
 
-        /* Герой секция с улучшениями */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
                         url('https://via.placeholder.com/1920x1080/6a0dad/4b0082?text=AnimeHUB') no-repeat center/cover;
@@ -168,7 +165,6 @@
             box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
         }
 
-        /* Основной контент */
         .container {
             padding: 1.5rem;
             max-width: 1400px;
@@ -184,7 +180,6 @@
             position: relative;
         }
 
-        /* Сетка аниме с адаптивными карточками */
         .anime-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -242,7 +237,6 @@
             font-size: 0.9rem;
         }
 
-        /* Футер */
         footer {
             background: #0f0f1a;
             padding: 2rem 1rem;
@@ -273,14 +267,12 @@
             transform: translateY(-3px);
         }
 
-        /* Лоадер для асинхронной загрузки */
         .loader {
             display: none;
             text-align: center;
             padding: 1rem;
         }
 
-        /* Кнопка "Наверх" */
         .scroll-top {
             position: fixed;
             bottom: 20px;
@@ -304,7 +296,6 @@
             opacity: 1;
         }
 
-        /* Адаптивные стили */
         @media (max-width: 992px) {
             .anime-grid {
                 grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -417,29 +408,28 @@
     <div class="container">
         <h2 class="section-title">Популярные аниме</h2>
         <div class="anime-grid">
-            <!-- Первые 6 карточек для примера -->
-            <div class="anime-card" onclick="window.location.href='anime1.html?id='">
+            <div class="anime-card" onclick="window.location.href='anime1.html?id=1'">
                 <img src="https://avatars.mds.yandex.net/i?id=947ae7f0dde5dbc08feca48cf09b793abcfc80c5-5161061-images-thumbs&n=13" alt="Магичка" loading="lazy">
                 <div class="anime-info">
                     <h3>Магическая Битва</h3>
                     <p class="rating">★ 9.1</p>
                 </div>
             </div>
-            <div class="anime-card" onclick="window.location.href='anime2.html?id='">
+            <div class="anime-card" onclick="window.location.href='anime2.html?id=2'">
                 <img src="https://avatars.mds.yandex.net/i?id=c11781aa755f0e749ee89e6b6b8c6705b15ff75a-5878141-images-thumbs&n=13" alt="Гачиакута" loading="lazy">
                 <div class="anime-info">
                     <h3>Гачиакута</h3>
                     <p class="rating">★ 8.7</p>
                 </div>
             </div>
-            <div class="anime-card" onclick="window.location.href='anime3.html?id='">
+            <div class="anime-card" onclick="window.location.href='anime3.html?id=3'">
                 <img src="https://avatars.mds.yandex.net/i?id=05d71006673476f6a3a52a047105924dabd234ac-5221753-images-thumbs&n=13" alt="Хроники людей и демонов" loading="lazy">
                 <div class="anime-info">
                     <h3>Хроники людей и демонов</h3>
                     <p class="rating">★ 8.7</p>
                 </div>
             </div>
-            <div class="anime-card" onclick="window.location.href='anime.html?id=4'">
+            <div class="anime-card" onclick="window.location.href='anime4.html?id=4'">
                 <img src="https://avatars.mds.yandex.net/i?id=7fd7727520ce0f677e72f3286f58c7c2ab601133-4571688-images-thumbs&n=13" alt="Быть героем Икс" loading="lazy">
                 <div class="anime-info">
                     <h3>Быть героем Икс</h3>
@@ -532,58 +522,22 @@
         const loader = document.getElementById('loader');
         let currentPage = 1;
         
-        // Здесь можно добавить загрузку данных с API
         loadMoreBtn.addEventListener('click', () => {
             loadMoreBtn.style.display = 'none';
             loader.style.display = 'block';
             
-            // Имитация загрузки данных
             setTimeout(() => {
-                // В реальном приложении здесь будет fetch к API
                 const animeGrid = document.querySelector('.anime-grid');
                 const newAnime = [
-                    {
-                        onclick="window.location.href='anime7.html?id=7'",
-                        title: "Маг воды",
-                        image: "https://avatars.mds.yandex.net/i?id=e01ce52e5fd94387e821bed3de4c8c9afe4e410b-11018127-images-thumbs&n=13",
-                        rating: 8.7
-                    },
-                    {
-                        id: 8,
-                        title: "Re:Zero",
-                        image: "https://avatars.mds.yandex.net/i?id=aae770fefee0409f841f47adcf19cf5f64695ca9-5655212-images-thumbs&n=13",
-                        rating: 8.7
-                    },
-                    {
-                        id: 9,
-                        title: "Наруто",
-                        image: "https://avatars.mds.yandex.net/i?id=2b4cfa262904e87275ca80118a5b958b736415bf-12501129-images-thumbs&n=13",
-                        rating: 8.7
-                    },
-                    {
-                        id: 10,
-                        title: "Левиафан",
-                        image: "https://avatars.mds.yandex.net/i?id=51334374d38af24b77e43ddff65fdc4a1f241a41-12441694-images-thumbs&n=13",
-                        rating: 3.5
-                    },
-                    {
-                        id: 11,
-                        title: "Твоя форма",
-                        image: "https://avatars.mds.yandex.net/i?id=3ad6bc37a374ff8ac3cf4144a4e36767a8f0ab33-9181181-images-thumbs&n=13",
-                        rating: 8.7
-                    },
-                    {
-                        id: 12,
-                        title: "Пламенная бригада",
-                        image: "https://avatars.mds.yandex.net/i?id=7d326c43ef9225f449d6b04199a489032941c156-4872026-images-thumbs&n=13",
-                        rating: 8.7
-                    }
+                    { id: 7, title: 'Маг воды', image: 'https://avatars.mds.yandex.net/i?id=e01ce52e5fd94387e821bed3de4c8c9afe4e410b-11018127-images-thumbs&n=13', rating: 9.0 },
+                    { id: 8, title: 'Re: Zero', image: 'https://avatars.mds.yandex.net/i?id=aae770fefee0409f841f47adcf19cf5f64695ca9-5655212-images-thumbs&n=13', rating: 8.5 },
+                    { id: 9, title: 'Твоя форма', image: 'https://avatars.mds.yandex.net/i?id=3ad6bc37a374ff8ac3cf4144a4e36767a8f0ab33-9181181-images-thumbs&n=13', rating: 8.8 }
                 ];
                 
                 newAnime.forEach(anime => {
                     const card = document.createElement('div');
                     card.className = 'anime-card';
-                    card.onclick = () => window.location.href = `anime.html?id=${anime.id}`;
+                    card.onclick = () => window.location.href = `anime${anime.id}.html?id=${anime.id}`;
                     card.innerHTML = `
                         <img src="${anime.image}" alt="${anime.title}" loading="lazy">
                         <div class="anime-info">
@@ -598,7 +552,6 @@
                 loadMoreBtn.style.display = 'block';
                 currentPage++;
                 
-                // В реальном приложении нужно проверять, есть ли еще данные
                 if (currentPage >= 3) {
                     loadMoreBtn.style.display = 'none';
                 }
@@ -625,4 +578,4 @@
         }
     </script>
 </body>
-</html> 
+</html>
